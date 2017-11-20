@@ -95,9 +95,10 @@ app.get("/api/vehicle", (req, res, next) => {
       .get_vehicles_by_email([req.query.userEmail])
       .then(response => res.json(response))
       .catch(err => console.log(err));
-  } else if (req.query.userFirstStart) {
+  }
+  if (req.query.userFirstStart) {
     db
-      .get_vehicles_by_letters([req.query.userFirstStart])
+      .get_vehicles_by_letters([req.query.userFirstStart] + "%")
       .then(response => res.json(response))
       .catch(err => console.log(err));
   }
